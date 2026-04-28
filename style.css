@@ -760,7 +760,6 @@ section { padding: 100px 0; }
   .hero-visual { order: -1; }
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
   .skills-grid { grid-template-columns: 1fr; }
-  .projects-grid { grid-template-columns: 1fr 1fr; }
   .contact-grid { grid-template-columns: 1fr; }
 }
 
@@ -768,7 +767,6 @@ section { padding: 100px 0; }
   .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: rgba(10,10,15,0.98); padding: 24px; gap: 20px; border-bottom: 1px solid var(--border); }
   .nav-links.open { display: flex; }
   .hamburger { display: flex; }
-  .projects-grid { grid-template-columns: 1fr; }
   .about-stats { grid-template-columns: 1fr; }
   .avatar-wrapper { width: 260px; height: 300px; }
   .avatar-inner { width: 240px; height: 280px; border-radius: 20px; }
