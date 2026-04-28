@@ -51,17 +51,37 @@ fadeEls.forEach(el => {
   fadeObserver.observe(el);
 });
 
+// EmailJS init
+emailjs.init('atYrY32DQffHnZ8JA');
+
 // Contact form
 document.getElementById('contactForm').addEventListener('submit', (e) => {
   e.preventDefault();
   const btn = e.target.querySelector('button[type="submit"]');
-  btn.innerHTML = '<i class="fas fa-check"></i> Pesan Terkirim!';
-  btn.style.background = 'linear-gradient(135deg, #00c853, #00e676)';
-  setTimeout(() => {
-    btn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Pesan';
-    btn.style.background = '';
-    e.target.reset();
-  }, 3000);
+  btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+  btn.disabled = true;
+
+  emailjs.sendForm('service_jhypz6f', 'template_4wb6fwj', e.target)
+    .then(() => {
+      btn.innerHTML = '<i class="fas fa-check"></i> Pesan Terkirim!';
+      btn.style.background = 'linear-gradient(135deg, #00c853, #00e676)';
+      e.target.reset();
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Pesan';
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
+    })
+    .catch((error) => {
+      console.error('EmailJS error:', error);
+      btn.innerHTML = '<i class="fas fa-times"></i> Gagal Mengirim';
+      btn.style.background = 'linear-gradient(135deg, #ff4444, #ff6666)';
+      setTimeout(() => {
+        btn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Pesan';
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
+    });
 });
 
 // Active nav link on scroll
